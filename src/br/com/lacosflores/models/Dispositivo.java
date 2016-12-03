@@ -27,7 +27,9 @@ public class Dispositivo {
 	@ManyToOne
 	@JoinColumn(name="floricultura_id")
 	private Floricultura floricultura;
-
+	
+	
+	
 	public Long getId() {
 		return id;
 	}

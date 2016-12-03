@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.auth0.jwt.JWTSigner;
 
 import br.com.lacosflores.dao.UsuarioDao;
-import br.com.lacosflores.models.Endereco;
 import br.com.lacosflores.models.Usuario;
 
 

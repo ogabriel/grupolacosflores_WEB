@@ -41,6 +41,10 @@ public class DispositivoDao{
 	public Dispositivo consultar(Long id) {
 		return entityManager.find(Dispositivo.class, id);		 
 	}
+	
+	public Dispositivo consultar_imei(String imei) {
+		return entityManager.find(Dispositivo.class, imei);		 
+	}
 
 
 	//TODO: falta as paradas de rastreamento

@@ -43,4 +43,8 @@ public class FloriculturaDao{
 		return query.getResultList();
 	}
 	
+	public Floricultura consultar_cep(String cep) {
+		return entityManager.find(Floricultura.class, cep);
+	}
+	
 }

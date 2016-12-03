@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.FloriculturaDao;
 import br.com.lacosflores.models.Dispositivo;
-import br.com.lacosflores.models.Endereco;
 import br.com.lacosflores.models.Floricultura;
 import br.com.lacosflores.models.Noticias;
 import br.com.lacosflores.models.Pedido;
@@ -33,11 +32,10 @@ public class FloriculturaController{
 	public ResponseEntity<Floricultura> inserir(@RequestBody Floricultura floricultura) {
 		//Usuario e Long criados por padrao do parametro inserirUsuario
 		try {
-			Endereco end = floricultura.getEndereco();
-			end.setFloricultura(floricultura);
+			
 			
 			for (Dispositivo disp : floricultura.getDispositivos()) {
-				disp.setFloricultura(floricultura);
+				disp.setFloricultura(floricultura);                                                                                                                                
 			}
 			
 			for (Usuario usu : floricultura.getUsuarios()) {
