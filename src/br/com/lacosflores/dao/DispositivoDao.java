@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.lacosflores.models.Dispositivo;
+import br.com.lacosflores.models.Floricultura;
 import br.com.lacosflores.models.Usuario;
 
 @Repository
@@ -43,8 +44,17 @@ public class DispositivoDao {
 		return entityManager.find(Dispositivo.class, id);
 	}
 
-	public Dispositivo consultar_imei(String imei) {
-		return entityManager.find(Dispositivo.class, imei);
+	public List<Dispositivo> consultar_imei(String imei) {
+		TypedQuery<Dispositivo> query = entityManager.createQuery(
+				"select dispositivo from Dispositivo dispositivo where dispositivo.imei = :imei",
+				Dispositivo.class);
+		query.setParameter("imei", imei);
+		
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	// TODO: falta as paradas de rastreamento

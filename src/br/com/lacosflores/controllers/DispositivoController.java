@@ -69,8 +69,8 @@ public class DispositivoController {
 		return dispositivoDao.consultar(id);
 	}
 
-	@RequestMapping(value = "/dispositivo/celular/[imei]", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Dispositivo consultar_imei(@PathVariable("imei") String imei) {
+	@RequestMapping(value = "/dispositivo/celular/{imei}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Dispositivo> consultar_imei(@PathVariable("imei") String imei) {
 		return dispositivoDao.consultar_imei(imei);
 	}
 	

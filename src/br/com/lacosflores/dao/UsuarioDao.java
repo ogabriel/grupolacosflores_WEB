@@ -43,7 +43,7 @@ public class UsuarioDao {
 
 	public Usuario logar(Usuario usuario) {
 		TypedQuery<Usuario> query = entityManager.createQuery(
-				"selecte usuario form Usuario usuario where usuario.email = :email and usuario.senha = :senha",
+				"select usuario from Usuario usuario where usuario.email = :email and usuario.senha = :senha",
 				Usuario.class);
 		query.setParameter("email", usuario.getEmail());
 		query.setParameter("senha", usuario.getSenha());

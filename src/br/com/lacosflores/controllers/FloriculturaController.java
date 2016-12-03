@@ -28,6 +28,8 @@ public class FloriculturaController {
 
 	@Autowired
 	private FloriculturaDao floriculturaDao;
+	
+		
 
 	@RequestMapping(value = "/floricultura/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Void> salvar(@PathVariable("id") Long id, @RequestBody Floricultura floricultura) {
@@ -103,15 +105,15 @@ public class FloriculturaController {
 	public Floricultura consultar(@PathVariable("id") long id) {
 		return floriculturaDao.consultar(id);
 	}
-	
-	@RequestMapping(value = "/floricultura/cep/ ", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Floricultura consultar_cep(@PathVariable(" ") String cep) {
-		return floriculturaDao.consultar_cep(cep);
-	}	
 
 	@RequestMapping(value = "/floricultura/contains/{nomeFantasia}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<Floricultura> listar_contains(@PathVariable("nomeFantasia") String nomeFantasia) {
 		return floriculturaDao.listar_contains(nomeFantasia);
+	}
+	
+	@RequestMapping(value = "/floricultura/cep/{cep}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Floricultura> consultar_cep(@PathVariable("cep") String cep) {
+		return floriculturaDao.procurar_cep(cep);
 	}
 
 }
