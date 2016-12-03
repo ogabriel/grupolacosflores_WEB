@@ -1,0 +1,35 @@
+{
+	"razaoSocial": "vitor",
+	"nomeFantasia": "vitoria",
+	"cnpj": "91.579.829/0001-46",
+	"endereco":	{
+		"bairro": "esquina",
+		"cep": "0000",
+		"complemento": "casa 10",
+		"logradouro": "rua silveira",
+		"numero": 10
+		},
+	"usuarios":	[
+			{
+				"email": "joselito@gmial",
+				"nome": "vitoria",
+				"senha": "fdaskjfdçslhashmd5eassim"
+				
+			}
+		],
+	"dispositivos": [
+			{
+				"imei": "ummontedecoisaesparraamda"
+			}
+		],
+	"pedidos": [
+			{
+				"numero": "10",
+				"observacao": "tenha cuidado com o pedido",
+				"pedidoData": "10/10/1000",
+				"quantidade": "2",
+				"status": "processando",
+				"valorTotal": "20.0"
+			}
+		]
+}
