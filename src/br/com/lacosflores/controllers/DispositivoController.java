@@ -1,6 +1,5 @@
 package br.com.lacosflores.controllers;
 
-
 import java.net.URI;
 import java.util.*;
 
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.DispositivoDao;
 import br.com.lacosflores.models.Dispositivo;
-
 
 //TODO: FAZER LIST DE PEDIDOS
 @RestController
@@ -40,19 +38,19 @@ public class DispositivoController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-		
-	//TODO: checar as URIs
-	@RequestMapping(value = "dispositivo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+
+	// TODO: checar as URIs
+	@RequestMapping(value = "/dispositivo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Dispositivo> inserir(@RequestBody Dispositivo dispositivo) {
 		try {
 			dispositivoDao.inserir(dispositivo);
-			
+
 			return ResponseEntity.created(new URI("/dispositivo" + dispositivo.getId())).body(dispositivo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	}	
+	}
 
 	@RequestMapping(value = "/dispositivo/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> remover(@PathVariable("id") long id) {
@@ -68,6 +66,11 @@ public class DispositivoController {
 	@RequestMapping(value = "/dispositivo/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Dispositivo consultar(@PathVariable("id") long id) {
 		return dispositivoDao.consultar(id);
+	}
+
+	@RequestMapping(value = "/dispositivo/celular/{imei}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Dispositivo consultar_imei(@PathVariable("imei") String imei) {
+		return dispositivoDao.consultar_imei(imei);
 	}
 
 }

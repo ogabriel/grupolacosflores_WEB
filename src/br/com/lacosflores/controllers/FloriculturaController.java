@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.lacosflores.dao.FloriculturaDao;
 import br.com.lacosflores.models.Dispositivo;
 import br.com.lacosflores.models.Floricultura;
+import br.com.lacosflores.models.Item;
 import br.com.lacosflores.models.Noticias;
 import br.com.lacosflores.models.Pedido;
 import br.com.lacosflores.models.Usuario;
@@ -43,6 +44,9 @@ public class FloriculturaController{
 			}
 			
 			for (Pedido pedido : floricultura.getPedidos()) {
+				for (Item item : pedido.getItens()) {
+					item.setPedido(pedido);
+				}
 				pedido.setFloricultura(floricultura);
 			}
 			

@@ -23,13 +23,6 @@ public class PedidoDao {
 		entityManager.persist(pedido);
 
 	}
-	
-	@Transactional
-	public void salvar(Pedido pedido) {
-		entityManager.merge(pedido);
-
-	}
-
 
 	@Transactional
 	public void remover(Long id) {

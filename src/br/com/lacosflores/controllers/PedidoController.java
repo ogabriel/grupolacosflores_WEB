@@ -29,11 +29,11 @@ public class PedidoController{
 	@Autowired
 	private ItemDao itemDao;
 
-/*@RequestMapping(value = "/pedido", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	/*@RequestMapping(value = "/pedido", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Pedido> inserir(@RequestBody Pedido pedido) {
 		try {
-			for (Item item : pedido.getItens()) {
-				item.setPedido(pedido);
+			for (Item itens : pedido.getItens()) {
+				itens.setPedidos(pedido);
 			}
 			pedidoDao.inserir(pedido);
 			return ResponseEntity.created(new URI("/pedido" + pedido.getId())).body(pedido);
@@ -42,20 +42,6 @@ public class PedidoController{
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	} */
-
-	@RequestMapping(value = "/pedido/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Void> salvar(@PathVariable("id") Long id, @RequestBody Pedido pedido) {
-		try {
-			pedidoDao.salvar(pedido);
-			HttpHeaders responseHeader = new HttpHeaders();
-			URI location = new URI("/pedido" + id);
-			responseHeader.setLocation(location);
-			return new ResponseEntity<Void>(responseHeader, HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
 
 	@RequestMapping(value = "/pedido/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> remover(@PathVariable("id") long id) {

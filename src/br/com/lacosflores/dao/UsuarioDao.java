@@ -1,4 +1,5 @@
 package br.com.lacosflores.dao;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.lacosflores.models.Usuario;
-
 
 @Repository
 public class UsuarioDao {
@@ -26,7 +26,7 @@ public class UsuarioDao {
 	public void inserir(Usuario usuario) {
 		entityManager.persist(usuario);
 	}
-	
+
 	@Transactional
 	public void remover(Long id) {
 		entityManager.remove(this.consultar(id));
@@ -54,6 +54,5 @@ public class UsuarioDao {
 		}
 
 	}
-
 
 }

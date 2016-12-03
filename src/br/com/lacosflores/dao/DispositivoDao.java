@@ -13,16 +13,16 @@ import br.com.lacosflores.models.Dispositivo;
 import br.com.lacosflores.models.Floricultura;
 
 @Repository
-public class DispositivoDao{
+public class DispositivoDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Transactional
 	public void salvar(Dispositivo dispositivo) {
-		entityManager.merge(dispositivo);	
+		entityManager.merge(dispositivo);
 	}
-	
+
 	@Transactional
 	public void inserir(Dispositivo dispositivo) {
 		entityManager.persist(dispositivo);
@@ -30,22 +30,22 @@ public class DispositivoDao{
 
 	@Transactional
 	public void remover(Long id) {
-		entityManager.remove(this.consultar(id));		
+		entityManager.remove(this.consultar(id));
 	}
 
 	public List<Dispositivo> listar() {
-		TypedQuery<Dispositivo> query = entityManager.createQuery("select dispositivo from Dispositivo dispositivo ", Dispositivo.class);
+		TypedQuery<Dispositivo> query = entityManager.createQuery("select dispositivo from Dispositivo dispositivo ",
+				Dispositivo.class);
 		return query.getResultList();
 	}
 
 	public Dispositivo consultar(Long id) {
-		return entityManager.find(Dispositivo.class, id);		 
+		return entityManager.find(Dispositivo.class, id);
 	}
-	
+
 	public Dispositivo consultar_imei(String imei) {
-		return entityManager.find(Dispositivo.class, imei);		 
+		return entityManager.find(Dispositivo.class, imei);
 	}
 
-
-	//TODO: falta as paradas de rastreamento
+	// TODO: falta as paradas de rastreamento
 }

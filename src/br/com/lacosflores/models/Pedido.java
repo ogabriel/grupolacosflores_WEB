@@ -1,50 +1,44 @@
 package br.com.lacosflores.models;
 
-
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @JsonIgnoreProperties("floricultura")
 public class Pedido {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Integer numero;
-	
-	//@Temporal(TemporalType.DATE)
-	//@DateTimeFormat(pattern="dd-MM-yyyy")
-	//private Date pedidoData;
+
+	// @Temporal(TemporalType.DATE)
+	// @DateTimeFormat(pattern="dd-MM-yyyy")
+	// private Date pedidoData;
 	private String pedidoData;
 	private String status;
 	private String observacao;
 	private Integer quantidade;
 	private Double valorTotal;
-	
-	@ManyToMany(fetch=FetchType.EAGER)
-	@JoinTable(
-		name="pedido_item"
-		, joinColumns={
-			@JoinColumn(name="pedido_id")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="item_id")
-			}
-		)
-	private List<Item> items;
-	
+
+	@Fetch(FetchMode.SELECT)
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	private List<Item> itens;
+
 	@ManyToOne
 	@JoinColumn(name = "floricultura_id")
 	private Floricultura floricultura;
@@ -105,12 +99,12 @@ public class Pedido {
 		this.valorTotal = valorTotal;
 	}
 
-	public List<Item> getItems() {
-		return items;
+	public List<Item> getItens() {
+		return itens;
 	}
 
-	public void setItems(List<Item> items) {
-		this.items = items;
+	public void setItens(List<Item> items) {
+		this.itens = items;
 	}
 
 	public Floricultura getFloricultura() {
@@ -120,7 +114,5 @@ public class Pedido {
 	public void setFloricultura(Floricultura floricultura) {
 		this.floricultura = floricultura;
 	}
-	
-	
 
 }

@@ -1,21 +1,17 @@
 package br.com.lacosflores.models;
 
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@JsonIgnoreProperties("pedidos")
+@JsonIgnoreProperties("pedido")
 public class Item {
 	
 	@Id
@@ -25,8 +21,9 @@ public class Item {
 	private String descricao;
 	private Double valorUnitario;
 	
-	@ManyToMany(mappedBy="items", fetch=FetchType.EAGER)
-	private List<Pedido> pedidos;
+	@ManyToOne
+	@JoinColumn(name="pedido_id")
+	private Pedido pedido;
 
 	public Long getId() {
 		return id;
@@ -60,15 +57,15 @@ public class Item {
 		this.valorUnitario = valorUnitario;
 	}
 
-	public List<Pedido> getPedidos() {
-		return pedidos;
+	public Pedido getPedido() {
+		return pedido;
 	}
 
-	public void setPedidos(List<Pedido> pedidos) {
-		this.pedidos = pedidos;
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
 	}
+
 
 	
-
 	
 }

@@ -47,7 +47,7 @@ public class NoticiasDao{
 	}
 	
 	public List<Noticias> listar_contains(String titulo) {
-		TypedQuery<Noticias> query = entityManager.createQuery("select noticias from Noticias noticias WHERE noticias.titulo LIKE '"+titulo+"%'", Noticias.class);
+		TypedQuery<Noticias> query = entityManager.createQuery("select noticias from Noticias noticias WHERE noticias.titulo LIKE '%"+titulo+"%'", Noticias.class);
 		return query.getResultList();
 	}
 	
