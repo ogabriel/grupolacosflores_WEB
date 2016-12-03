@@ -70,20 +70,16 @@ public class UsuarioController {
 	public Usuario consultar(@PathVariable("id") long id) {
 		return usuarioDao.consultar(id);
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Usuario> logar(@RequestBody Usuario usuario) {
 		Usuario us = usuarioDao.logar(usuario);
-		
+
 		if (us != null) {
 			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		else{
+		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
-
-	
-	
 
 }

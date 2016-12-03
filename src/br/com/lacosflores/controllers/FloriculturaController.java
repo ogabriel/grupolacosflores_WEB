@@ -4,9 +4,11 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,32 +19,27 @@ import br.com.lacosflores.dao.FloriculturaDao;
 import br.com.lacosflores.models.Dispositivo;
 import br.com.lacosflores.models.Floricultura;
 import br.com.lacosflores.models.Item;
-import br.com.lacosflores.models.Noticias;
 import br.com.lacosflores.models.Pedido;
 import br.com.lacosflores.models.Usuario;
 
-
 //apagar
 @RestController
-public class FloriculturaController{
+public class FloriculturaController {
 
 	@Autowired
 	private FloriculturaDao floriculturaDao;
-	
-	@RequestMapping(value = "/floricultura", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Floricultura> inserir(@RequestBody Floricultura floricultura) {
-		//Usuario e Long criados por padrao do parametro inserirUsuario
+
+	@RequestMapping(value = "/floricultura/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Void> salvar(@PathVariable("id") Long id, @RequestBody Floricultura floricultura) {
 		try {
-			
-			
 			for (Dispositivo disp : floricultura.getDispositivos()) {
-				disp.setFloricultura(floricultura);                                                                                                                                
+				disp.setFloricultura(floricultura);
 			}
-			
+
 			for (Usuario usu : floricultura.getUsuarios()) {
 				usu.setFloricultura(floricultura);
 			}
-			
+
 			for (Pedido pedido : floricultura.getPedidos()) {
 				for (Item item : pedido.getItens()) {
 					item.setPedido(pedido);
@@ -50,17 +47,47 @@ public class FloriculturaController{
 				pedido.setFloricultura(floricultura);
 			}
 			
+			floriculturaDao.salvar(floricultura);
+			HttpHeaders responseHeader = new HttpHeaders();
+			URI location = new URI("/floricultura" + id);
+			responseHeader.setLocation(location);
+			return new ResponseEntity<Void>(responseHeader, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value = "/floricultura", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Floricultura> inserir(@RequestBody Floricultura floricultura) {
+		// Usuario e Long criados por padrao do parametro inserirUsuario
+		try {
+
+			for (Dispositivo disp : floricultura.getDispositivos()) {
+				disp.setFloricultura(floricultura);
+			}
+
+			for (Usuario usu : floricultura.getUsuarios()) {
+				usu.setFloricultura(floricultura);
+			}
+
+			for (Pedido pedido : floricultura.getPedidos()) {
+				for (Item item : pedido.getItens()) {
+					item.setPedido(pedido);
+				}
+				pedido.setFloricultura(floricultura);
+			}
+
 			floriculturaDao.inserir(floricultura);
-			
+
 			URI location = new URI("/floricultura/" + floricultura.getId());
 			return ResponseEntity.created(location).body(floricultura);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	} 
+	}
 
-	
 	@RequestMapping(value = "/floricultura/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> remover(@PathVariable("id") long id) {
 		floriculturaDao.remover(id);
@@ -70,13 +97,18 @@ public class FloriculturaController{
 	@RequestMapping(value = "/floricultura", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<Floricultura> listar() {
 		return floriculturaDao.listar();
-	}
-
+	}	
+	
 	@RequestMapping(value = "/floricultura/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Floricultura consultar(@PathVariable("id") long id) {
 		return floriculturaDao.consultar(id);
 	}
 	
+	@RequestMapping(value = "/floricultura/cep/ ", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Floricultura consultar_cep(@PathVariable(" ") String cep) {
+		return floriculturaDao.consultar_cep(cep);
+	}	
+
 	@RequestMapping(value = "/floricultura/contains/{nomeFantasia}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<Floricultura> listar_contains(@PathVariable("nomeFantasia") String nomeFantasia) {
 		return floriculturaDao.listar_contains(nomeFantasia);

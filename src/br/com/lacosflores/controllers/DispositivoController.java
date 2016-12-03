@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.DispositivoDao;
 import br.com.lacosflores.models.Dispositivo;
+import br.com.lacosflores.models.Usuario;
 
 //TODO: FAZER LIST DE PEDIDOS
 @RestController
@@ -68,9 +69,12 @@ public class DispositivoController {
 		return dispositivoDao.consultar(id);
 	}
 
-	@RequestMapping(value = "/dispositivo/celular/{imei}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/dispositivo/celular/[imei]", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Dispositivo consultar_imei(@PathVariable("imei") String imei) {
 		return dispositivoDao.consultar_imei(imei);
 	}
+	
+	
+	
 
 }

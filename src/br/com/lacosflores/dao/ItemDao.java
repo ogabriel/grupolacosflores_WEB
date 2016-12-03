@@ -11,22 +11,21 @@ import br.com.lacosflores.models.Item;
 import br.com.lacosflores.models.Noticias;
 
 @Repository
-public class ItemDao{
-	
+public class ItemDao {
+
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	@Transactional
 	public void inserir(Item item) {
 		entityManager.persist(item);
 	}
 
-
 	@Transactional
 	public void remover(Long id) {
 		entityManager.remove(this.consultar(id));
 	}
-	
+
 	public List<Item> listar() {
 		TypedQuery<Item> query = entityManager.createQuery("select item from Item item", Item.class);
 		return query.getResultList();
@@ -35,10 +34,11 @@ public class ItemDao{
 	public Item consultar(Long id) {
 		return entityManager.find(Item.class, id);
 	}
-	
+
 	public List<Item> listar_contains(String nome) {
-		TypedQuery<Item> query = entityManager.createQuery("select item from Item item WHERE item.nome LIKE '"+nome+"%'", Item.class);
+		TypedQuery<Item> query = entityManager
+				.createQuery("select item from Item item WHERE item.nome LIKE '" + nome + "%'", Item.class);
 		return query.getResultList();
 	}
-	
+
 }

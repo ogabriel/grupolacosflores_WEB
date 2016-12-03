@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity

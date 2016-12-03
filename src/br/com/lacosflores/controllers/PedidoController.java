@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +25,14 @@ public class PedidoController{
 
 	@Autowired
 	private PedidoDao pedidoDao;
-	@Autowired
-	private ItemDao itemDao;
+	/*@Autowired
+	private ItemDao itemDao;*/
 
-	/*@RequestMapping(value = "/pedido", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/pedido", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Pedido> inserir(@RequestBody Pedido pedido) {
 		try {
 			for (Item itens : pedido.getItens()) {
-				itens.setPedidos(pedido);
+				itens.setPedido(pedido);
 			}
 			pedidoDao.inserir(pedido);
 			return ResponseEntity.created(new URI("/pedido" + pedido.getId())).body(pedido);
@@ -41,7 +40,7 @@ public class PedidoController{
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	} */
+	} 
 
 	@RequestMapping(value = "/pedido/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> remover(@PathVariable("id") long id) {
@@ -54,11 +53,12 @@ public class PedidoController{
 		return pedidoDao.listar();
 	}
 
-	/*@RequestMapping(value = "/pedido/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/pedido/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public Pedido consultar(@PathVariable("id") long id) {
 		return pedidoDao.consultar(id);
 	}
-	public double calcularValor(long idPedido, long idItem){
+	
+	/*public double calcularValor(long idPedido, long idItem){
 		Pedido pedido = pedidoDao.consultar(idPedido);
 		Item item = itemDao.consultar(idItem);
 		return pedido.getItens().size() * item.getValorUnitario();
