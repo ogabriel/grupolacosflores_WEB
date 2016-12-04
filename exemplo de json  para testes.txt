@@ -1,35 +1,47 @@
 {
-	"razaoSocial": "vitor",
-	"nomeFantasia": "vitoria",
+	"razaoSocial": "João ltda",
+	"nomeFantasia": "João Flores",
 	"cnpj": "91.579.829/0001-46",
-	"endereco":	{
-		"bairro": "esquina",
-		"cep": "0000",
-		"complemento": "casa 10",
-		"logradouro": "rua silveira",
-		"numero": 10
-		},
+	"bairro": "Parque Peruche",
+	"cep": "02539-010",
+	"complemento": "casa 10",
+	"logradouro": "Rua Comendador Varam Keutenedjian",
+	"numero": 10,
 	"usuarios":	[
 			{
-				"email": "joselito@gmial",
-				"nome": "vitoria",
-				"senha": "fdaskjfdçslhashmd5eassim"
-				
+				"email": "joaoadm@gmail.com",
+				"nome": "João Dono",
+				"senha": "root"
 			}
 		],
 	"dispositivos": [
 			{
-				"imei": "ummontedecoisaesparraamda"
+				"imei": "imei qualquer",
+				"senha": "root"
 			}
 		],
 	"pedidos": [
 			{
 				"numero": "10",
 				"observacao": "tenha cuidado com o pedido",
-				"pedidoData": "10/10/1000",
+				"pedidoData": "10/10/2016",
 				"quantidade": "2",
 				"status": "processando",
-				"valorTotal": "20.0"
+				"valorTotal": "20.0",
+				"itens":
+				[
+					{
+						"nome": "Rosa Vermelha",
+						"descricao": "cor vermelha e em perfeito estado",
+						"valorUnitario": 10.0
+					},
+					{
+						"nome": "Tulipas",
+						"descricao": "perfeito estado",
+						"valorUnitario": 10.0
+					}
+					
+				]
 			}
 		]
 }
