@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.DispositivoDao;
 import br.com.lacosflores.models.Dispositivo;
+import br.com.lacosflores.models.Floricultura;
 
 //TODO: FAZER LIST DE PEDIDOS
 @RestController
@@ -76,9 +77,13 @@ public class DispositivoController {
 		return dispositivoDao.consultar_imei(imei);
 	}
 	
-	@RequestMapping(value = "/dispositivo/floricultura/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Dispositivo consultar_filial(@PathVariable("id") long id) {
-		return dispositivoDao.consultar_filial(id);
+	@RequestMapping(value = "/dispositivo/filial/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Floricultura consultar_filial(@PathVariable("id") long id) {
+		
+		Dispositivo dispositivo = dispositivoDao.consultar(id);
+		Floricultura floricultura = dispositivo.getFloricultura();
+		
+		return floricultura;
 	}
 	
 	
