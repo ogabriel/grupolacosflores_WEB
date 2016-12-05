@@ -57,5 +57,9 @@ public class DispositivoDao {
 		}
 	}
 
+	public Dispositivo consultar_filial(Long id) {
+		return entityManager.find(Dispositivo.class, id);
+	}
+	
 	// TODO: falta as paradas de rastreamento
 }

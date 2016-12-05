@@ -1,7 +1,7 @@
 package br.com.lacosflores.controllers;
 
 import java.net.URI;
-import java.util.*;
+import java.util.List;
 
 //import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.DispositivoDao;
 import br.com.lacosflores.models.Dispositivo;
-import br.com.lacosflores.models.Usuario;
 
 //TODO: FAZER LIST DE PEDIDOS
 @RestController
@@ -73,6 +73,11 @@ public class DispositivoController {
 	@RequestMapping(value = "/dispositivo/celular/{imei}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<Dispositivo> consultar_imei(@PathVariable("imei") String imei) {
 		return dispositivoDao.consultar_imei(imei);
+	}
+	
+	@RequestMapping(value = "/dispositivo/floricultura/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public Dispositivo consultar_filial(@PathVariable("id") long id) {
+		return dispositivoDao.consultar_filial(id);
 	}
 	
 	
