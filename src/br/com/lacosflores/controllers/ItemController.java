@@ -18,6 +18,7 @@ import br.com.lacosflores.models.Item;
 
 //falta alguns métodos(excluir etc)
 @RestController
+@CrossOrigin
 public class ItemController {
 
 	@Autowired

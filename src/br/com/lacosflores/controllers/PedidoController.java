@@ -21,6 +21,7 @@ import br.com.lacosflores.models.Pedido;
 //FAZER LIST DE PEDIDOS
 //falta alguns métodos(excluir etc)
 @RestController
+@CrossOrigin
 public class PedidoController{
 
 	@Autowired

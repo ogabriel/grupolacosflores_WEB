@@ -21,6 +21,7 @@ import br.com.lacosflores.models.Usuario;
 
 //TODO: FAZER LIST DE PEDIDOS
 @RestController
+@CrossOrigin
 public class DispositivoController {
 
 	@Autowired

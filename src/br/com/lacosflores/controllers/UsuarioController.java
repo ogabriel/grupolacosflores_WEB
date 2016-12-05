@@ -22,6 +22,7 @@ import br.com.lacosflores.dao.UsuarioDao;
 import br.com.lacosflores.models.Usuario;
 
 @RestController
+@CrossOrigin
 public class UsuarioController {
 	// TEM QUE COLOCAR AS CHAVES AQUI
 

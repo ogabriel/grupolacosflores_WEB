@@ -24,6 +24,7 @@ import br.com.lacosflores.models.Usuario;
 
 //apagar
 @RestController
+@CrossOrigin
 public class FloriculturaController {
 
 	@Autowired

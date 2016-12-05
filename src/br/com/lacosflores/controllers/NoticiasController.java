@@ -20,6 +20,7 @@ import br.com.lacosflores.models.Noticias;
 //FAZER LIST DE PEDIDOS
 //falta alguns métodos(excluir etc)
 @RestController
+@CrossOrigin
 public class NoticiasController {
 
 	@Autowired
