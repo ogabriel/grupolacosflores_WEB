@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.DispositivoDao;
+import br.com.lacosflores.dtoandroid.DTOAndroid;
 import br.com.lacosflores.models.Dispositivo;
 import br.com.lacosflores.models.Floricultura;
 
@@ -78,12 +79,13 @@ public class DispositivoController {
 	}
 	
 	@RequestMapping(value = "/dispositivo/filial/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Floricultura consultar_filial(@PathVariable("id") long id) {
+	public DTOAndroid consultar_filial(@PathVariable("id") long id) {
 		
 		Dispositivo dispositivo = dispositivoDao.consultar(id);
 		Floricultura floricultura = dispositivo.getFloricultura();
+		DTOAndroid dto = new DTOAndroid(dispositivo.getId(), dispositivo.getImei(), dispositivo.getSenha(), floricultura);
 		
-		return floricultura;
+		return dto;
 	}
 	
 	
