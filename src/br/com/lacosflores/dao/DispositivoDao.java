@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.lacosflores.models.Dispositivo;
-import br.com.lacosflores.models.Floricultura;
-import br.com.lacosflores.models.Usuario;
+//import br.com.lacosflores.models.Floricultura;
+//import br.com.lacosflores.models.Usuario;
 
 @Repository
 public class DispositivoDao {

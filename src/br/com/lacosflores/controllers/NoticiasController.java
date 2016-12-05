@@ -4,10 +4,11 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+//import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,13 +28,14 @@ public class NoticiasController {
 	private NoticiasDao noticiasDao;
 
 	@RequestMapping(value = "/noticias/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Void> salvar(@PathVariable("id") Long id, @RequestBody Noticias noticias) {
+	public ResponseEntity<Noticias> salvar(@PathVariable("id") Long id, @RequestBody Noticias noticias) {
 		try {
 			noticiasDao.salvar(noticias);
-			HttpHeaders responseHeader = new HttpHeaders();
-			URI location = new URI("/noticias/" + id);
-			responseHeader.setLocation(location);
-			return new ResponseEntity<Void>(responseHeader, HttpStatus.OK);
+			//HttpHeaders responseHeader = new HttpHeaders();
+			//URI location = new URI("/noticias/" + id);
+			//responseHeader.setLocation(location);
+			//return new ResponseEntity<Void>(responseHeader, HttpStatus.OK);
+			return ResponseEntity.ok(noticias);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

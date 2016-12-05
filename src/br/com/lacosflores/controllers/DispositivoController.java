@@ -5,7 +5,7 @@ import java.util.List;
 
 //import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+//import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +28,14 @@ public class DispositivoController {
 	private DispositivoDao dispositivoDao;
 
 	@RequestMapping(value = "/dispositivo/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Void> salvar(@PathVariable("id") Long id, @RequestBody Dispositivo dispositivo) {
+	public ResponseEntity<Dispositivo> salvar(@PathVariable("id") Long id, @RequestBody Dispositivo dispositivo) {
 		try {
 			dispositivoDao.salvar(dispositivo);
-			HttpHeaders responseHeader = new HttpHeaders();
-			URI location = new URI("/dispositivo" + id);
-			responseHeader.setLocation(location);
-			return new ResponseEntity<Void>(responseHeader, HttpStatus.OK);
+			//HttpHeaders responseHeader = new HttpHeaders();
+			//URI location = new URI("/dispositivo" + id);
+			//responseHeader.setLocation(location);
+			//return new ResponseEntity<Void>(responseHeader, HttpStatus.OK);
+			return ResponseEntity.ok(dispositivo);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

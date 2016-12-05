@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.lacosflores.models.Item;
-import br.com.lacosflores.models.Noticias;
+//import br.com.lacosflores.models.Noticias;
 
 @Repository
 public class ItemDao {

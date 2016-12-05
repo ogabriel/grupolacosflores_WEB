@@ -4,7 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+//import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +33,7 @@ public class FloriculturaController {
 		
 
 	@RequestMapping(value = "/floricultura/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Void> salvar(@PathVariable("id") Long id, @RequestBody Floricultura floricultura) {
+	public ResponseEntity<Floricultura> salvar(@PathVariable("id") Long id, @RequestBody Floricultura floricultura) {
 		try {
 			for (Dispositivo disp : floricultura.getDispositivos()) {
 				disp.setFloricultura(floricultura);
@@ -51,10 +51,11 @@ public class FloriculturaController {
 			}
 			
 			floriculturaDao.salvar(floricultura);
-			HttpHeaders responseHeader = new HttpHeaders();
-			URI location = new URI("/floricultura" + id);
-			responseHeader.setLocation(location);
-			return new ResponseEntity<Void>(responseHeader, HttpStatus.OK);
+			//HttpHeaders responseHeader = new HttpHeaders();
+			//URI location = new URI("/floricultura" + id);
+			//responseHeader.setLocation(location);
+			//return new ResponseEntity<Void>(responseHeader, HttpStatus.OK);
+			return ResponseEntity.ok(floricultura);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
