@@ -7,14 +7,13 @@ public class DTOAndroid {
 	private Long id;
 	private String imei;
 	private String senha;
-	public DTOAndroid(Long id, String imei, String senha, Floricultura floricultura) {
+	private Long id_floricultura;
+	public DTOAndroid(Long id, String imei, String senha, Long id_floricultura) {
 		this.id = id;
 		this.imei = imei;
 		this.senha = senha;
-		this.floricultura = floricultura;
+		this.id_floricultura = id_floricultura;
 	}
-	private Floricultura floricultura;
-	
 	public Long getId() {
 		return id;
 	}
@@ -33,12 +32,13 @@ public class DTOAndroid {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public Floricultura getFloricultura() {
-		return floricultura;
+	public Long getId_floricultura() {
+		return id_floricultura;
 	}
-	public void setFloricultura(Floricultura floricultura) {
-		this.floricultura = floricultura;
+	public void setId_floricultura(Long id_floricultura) {
+		this.id_floricultura = id_floricultura;
 	}
+	
 	
 	
 	

@@ -84,7 +84,7 @@ public class DispositivoController {
 		Dispositivo dispositivo = dispositivoDao.consultar(id);
 		Floricultura floricultura = dispositivo.getFloricultura();
 		
-		return new DTOAndroid(dispositivo.getId(), dispositivo.getImei(), dispositivo.getSenha(), floricultura);
+		return new DTOAndroid(dispositivo.getId(), dispositivo.getImei(), dispositivo.getSenha(), floricultura.getId());
 		
 	}
 	
