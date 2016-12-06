@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,12 +23,12 @@ import br.com.lacosflores.models.Noticias;
 //FAZER LIST DE PEDIDOS
 //falta alguns métodos(excluir etc)
 @RestController
-@CrossOrigin
+@CrossOrigin()
 public class NoticiasController {
 
 	@Autowired
 	private NoticiasDao noticiasDao;
-
+	
 	@RequestMapping(value = "/noticias/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Noticias> salvar(@PathVariable("id") Long id, @RequestBody Noticias noticias) {
 		try {
@@ -41,7 +43,7 @@ public class NoticiasController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
+	
 	@RequestMapping(value = "/noticias", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Noticias> inserir(@RequestBody Noticias noticias) {
 		noticiasDao.inserir(noticias);
@@ -60,7 +62,7 @@ public class NoticiasController {
 		noticiasDao.remover(id);
 		return ResponseEntity.noContent().build();
 	}
-
+	
 	@RequestMapping(value = "/noticias", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<Noticias> listar() {
 		return noticiasDao.listar();

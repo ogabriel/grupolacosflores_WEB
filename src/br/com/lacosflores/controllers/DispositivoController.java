@@ -23,7 +23,7 @@ import br.com.lacosflores.models.Floricultura;
 
 //TODO: FAZER LIST DE PEDIDOS
 @RestController
-@CrossOrigin
+@CrossOrigin()
 public class DispositivoController {
 
 	@Autowired
@@ -83,12 +83,9 @@ public class DispositivoController {
 		
 		Dispositivo dispositivo = dispositivoDao.consultar(id);
 		Floricultura floricultura = dispositivo.getFloricultura();
-		DTOAndroid dto = new DTOAndroid(dispositivo.getId(), dispositivo.getImei(), dispositivo.getSenha(), floricultura);
 		
-		return dto;
+		return new DTOAndroid(dispositivo.getId(), dispositivo.getImei(), dispositivo.getSenha(), floricultura);
+		
 	}
 	
-	
-	
-
 }

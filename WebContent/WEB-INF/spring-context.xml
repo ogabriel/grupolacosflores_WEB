@@ -26,6 +26,7 @@
 		<property name="password" value="1234" />
 	</bean>
 	
+
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="mysqlDataSource" />
