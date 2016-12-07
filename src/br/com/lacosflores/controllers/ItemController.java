@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.ItemDao;
 import br.com.lacosflores.models.Item;
+import br.com.lacosflores.models.Noticias;
 
 //falta alguns métodos(excluir etc)
 @RestController
@@ -25,17 +26,15 @@ public class ItemController {
 	@Autowired
 	private ItemDao itemDao;
 
-	@RequestMapping(value = "/item", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public ResponseEntity<Item> inserir(@PathVariable long id, @RequestBody Item item) {
-		itemDao.inserir(item);
+	@RequestMapping(value = "/item", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Item> inserir(@RequestBody Item noticias) {
+		itemDao.inserir(noticias);
 
 		try {
-			URI location = new URI("/item" + item.getId());
-
-			return ResponseEntity.created(location).body(item);
-		} catch (Exception exception) {
-			exception.printStackTrace();
-
+			URI location = new URI("/item" + noticias.getId());
+			return ResponseEntity.created(location).body(noticias);
+		} catch (Exception e) {
+			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
