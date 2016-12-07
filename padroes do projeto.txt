@@ -1,0 +1,11 @@
+Padrões do projeto:
+
+Portas do tomcat: 
+admin: 9005; 
+http: 9080;
+AJP: 9009
+
+Identificação do SQL:
+usuário: root;
+senha: root
+
