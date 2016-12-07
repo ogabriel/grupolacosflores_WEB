@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.PedidoDao;
+import br.com.lacosflores.dtoandroid.DTOAndroid;
+import br.com.lacosflores.models.Dispositivo;
+import br.com.lacosflores.models.Floricultura;
 import br.com.lacosflores.models.Item;
 import br.com.lacosflores.models.Pedido;
 
@@ -70,4 +73,6 @@ public class PedidoController{
 		Pedido pedido = pedidoDao.consultar(idPedido);
 		pedido.setStatus("Pedido Realizado");
 	}
+	
+	
 }

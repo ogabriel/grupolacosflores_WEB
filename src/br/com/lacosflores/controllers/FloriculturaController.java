@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.FloriculturaDao;
+import br.com.lacosflores.dtoandroid.DTOAndroid;
 import br.com.lacosflores.models.Dispositivo;
 import br.com.lacosflores.models.Floricultura;
 import br.com.lacosflores.models.Item;
@@ -116,6 +117,21 @@ public class FloriculturaController {
 	@RequestMapping(value = "/floricultura/cep/{cep}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public List<Floricultura> consultar_cep(@PathVariable("cep") String cep) {
 		return floriculturaDao.procurar_cep(cep);
+	}
+	
+	@RequestMapping(value = "/pedido/quantidade/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public int consultar_pedidos(@PathVariable("id") long id) {
+		
+		try{
+			Floricultura f = floriculturaDao.consultar(id);
+			return f.getPedidos().size();
+			
+		} catch(Exception e){
+			return 0;
+		}
+		
+		
+		
 	}
 
 }

@@ -63,5 +63,7 @@ public class FloriculturaDao {
 		TypedQuery<Floricultura> query = entityManager.createQuery("select floricultura from Floricultura floricultura WHERE floricultura.nomeFantasia LIKE '%"+ nomeFantasia + "%'", Floricultura.class);
 		return query.getResultList();
 	}
+	
+	
 
 }
