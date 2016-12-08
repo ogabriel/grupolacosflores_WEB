@@ -9,3 +9,8 @@ Identificação do SQL:
 usuário: root;
 senha: root
 
+instalar o node
+npm install -g gulp
+npm install -g bower
+bower install
+npm start
