@@ -31,6 +31,22 @@ public class PedidoController{
 	@Autowired
 	private FloriculturaDao floriculturaDao;
 
+	@RequestMapping(value = "/pedido/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Pedido> salvar(@PathVariable("id") Long id,@RequestBody Pedido pedido) {
+		try {
+			if (pedido.getItens() != null){	
+				for (Item itens : pedido.getItens()) {
+					itens.setPedido(pedido);
+				}
+			}
+			pedidoDao.salvar(pedido);
+			return ResponseEntity.ok(pedido);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	} 	
+	
 	@RequestMapping(value = "{id}/pedido", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Pedido> inserir(@PathVariable("id") Long id,@RequestBody Pedido pedido) {
 		try {
