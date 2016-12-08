@@ -21,7 +21,7 @@ public class PedidoDao {
 	public void salvar(Pedido pedido) {
 		entityManager.merge(pedido);
 	}
-	
+
 	@Transactional
 	public void inserir(Pedido pedido) {
 		entityManager.persist(pedido);

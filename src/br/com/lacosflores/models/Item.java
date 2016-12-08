@@ -1,6 +1,5 @@
 package br.com.lacosflores.models;
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,16 +12,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @JsonIgnoreProperties("pedido")
 public class Item {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
 	private String descricao;
 	private Double valorUnitario;
-	
+
 	@ManyToOne
-	@JoinColumn(name="pedido_id")
+	@JoinColumn(name = "pedido_id")
 	private Pedido pedido;
 
 	public Long getId() {
@@ -65,7 +64,4 @@ public class Item {
 		this.pedido = pedido;
 	}
 
-
-	
-	
 }

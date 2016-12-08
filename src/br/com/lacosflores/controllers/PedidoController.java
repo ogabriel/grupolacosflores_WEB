@@ -24,7 +24,7 @@ import br.com.lacosflores.models.Pedido;
 //falta alguns métodos(excluir etc)
 @RestController
 @CrossOrigin
-public class PedidoController{
+public class PedidoController {
 
 	@Autowired
 	private PedidoDao pedidoDao;
@@ -32,9 +32,9 @@ public class PedidoController{
 	private FloriculturaDao floriculturaDao;
 
 	@RequestMapping(value = "/pedido/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Pedido> salvar(@PathVariable("id") Long id,@RequestBody Pedido pedido) {
+	public ResponseEntity<Pedido> salvar(@PathVariable("id") Long id, @RequestBody Pedido pedido) {
 		try {
-			if (pedido.getItens() != null){	
+			if (pedido.getItens() != null) {
 				for (Item itens : pedido.getItens()) {
 					itens.setPedido(pedido);
 				}
@@ -45,17 +45,17 @@ public class PedidoController{
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	} 	
-	
+	}
+
 	@RequestMapping(value = "{id}/pedido", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Pedido> inserir(@PathVariable("id") Long id,@RequestBody Pedido pedido) {
+	public ResponseEntity<Pedido> inserir(@PathVariable("id") Long id, @RequestBody Pedido pedido) {
 		try {
-			if (pedido.getItens() != null){	
+			if (pedido.getItens() != null) {
 				for (Item itens : pedido.getItens()) {
 					itens.setPedido(pedido);
 				}
 			}
-			
+
 			Floricultura floricultura = floriculturaDao.consultar(id);
 			pedido.setFloricultura(floricultura);
 			pedidoDao.inserir(pedido);
@@ -64,7 +64,7 @@ public class PedidoController{
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-	} 
+	}
 
 	@RequestMapping(value = "/pedido/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> remover(@PathVariable("id") long id) {
@@ -81,15 +81,16 @@ public class PedidoController{
 	public Pedido consultar(@PathVariable("id") long id) {
 		return pedidoDao.consultar(id);
 	}
-	
-	/*public double calcularValor(long idPedido, long idItem){
-		Pedido pedido = pedidoDao.consultar(idPedido);
-		Item item = itemDao.consultar(idItem);
-		return pedido.getItens().size() * item.getValorUnitario();
-				
-	} */
-	
-	public void definirEntregue(long idPedido){
+
+	/*
+	 * public double calcularValor(long idPedido, long idItem){ Pedido pedido =
+	 * pedidoDao.consultar(idPedido); Item item = itemDao.consultar(idItem);
+	 * return pedido.getItens().size() * item.getValorUnitario();
+	 * 
+	 * }
+	 */
+
+	public void definirEntregue(long idPedido) {
 		Pedido pedido = pedidoDao.consultar(idPedido);
 		pedido.setStatus("Pedido Realizado");
 	}

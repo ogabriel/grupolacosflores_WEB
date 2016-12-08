@@ -30,12 +30,12 @@ public class ItemController {
 	private PedidoDao pedidoDao;
 
 	@RequestMapping(value = "/{id}/item", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Item> inserir(@PathVariable("id") Long id, @RequestBody Item item) {	
+	public ResponseEntity<Item> inserir(@PathVariable("id") Long id, @RequestBody Item item) {
 		try {
 			Pedido pedido = pedidoDao.consultar(id);
-			item.setPedido(pedido);			
+			item.setPedido(pedido);
 			itemDao.inserir(item);
-			
+
 			return ResponseEntity.created(new URI("/item" + item.getId())).body(item);
 		} catch (Exception e) {
 			e.printStackTrace();
