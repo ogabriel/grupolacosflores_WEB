@@ -80,8 +80,11 @@ public class DispositivoController {
 	}
 
 	@RequestMapping(value = "/dispositivo/celular/{imei}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Dispositivo consultar_imei(@PathVariable("imei") String imei) {
-		return dispositivoDao.consultar_imei(imei);
+	public DTOAndroid consultar_imei(@PathVariable("imei") String imei) {
+		Dispositivo disp = dispositivoDao.consultar_imei(imei);
+		DTOAndroid dto = new DTOAndroid(disp.getId(), disp.getImei(), disp.getSenha(), disp.getFloricultura().getId());
+		
+		return dto;
 	}
 	
 	@RequestMapping(value = "/dispositivo/filial/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
