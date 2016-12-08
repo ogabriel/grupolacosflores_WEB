@@ -24,8 +24,8 @@ public class FloriculturaDao {
 	}
 	
 	@Transactional
-	public void inserir(Floricultura item) {
-		entityManager.persist(item);
+	public void inserir(Floricultura floricultura) {
+		entityManager.persist(floricultura);
 	}
 
 	@Transactional
