@@ -46,9 +46,10 @@ public class NoticiasController {
 	
 	@RequestMapping(value = "/noticias", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Noticias> inserir(@RequestBody Noticias noticias) {
-		noticiasDao.inserir(noticias);
-
+		
 		try {
+			
+			noticiasDao.inserir(noticias);
 			URI location = new URI("/noticias" + noticias.getId());
 			return ResponseEntity.created(location).body(noticias);
 		} catch (Exception e) {
