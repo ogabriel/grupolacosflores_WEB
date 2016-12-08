@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.DispositivoDao;
+import br.com.lacosflores.dao.FloriculturaDao;
 import br.com.lacosflores.dtoandroid.DTOAndroid;
 import br.com.lacosflores.models.Dispositivo;
 import br.com.lacosflores.models.Floricultura;
@@ -28,6 +29,8 @@ public class DispositivoController {
 
 	@Autowired
 	private DispositivoDao dispositivoDao;
+	@Autowired
+	private FloriculturaDao floriculturaDao;
 
 	@RequestMapping(value = "/dispositivo/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Dispositivo> salvar(@PathVariable("id") Long id, @RequestBody Dispositivo dispositivo) {
@@ -45,9 +48,11 @@ public class DispositivoController {
 	}
 
 	// TODO: checar as URIs
-	@RequestMapping(value = "/dispositivo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Dispositivo> inserir(@RequestBody Dispositivo dispositivo) {
+	@RequestMapping(value = "/{id}/dispositivo", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Dispositivo> inserir(@PathVariable("id") Long id,@RequestBody Dispositivo dispositivo) {
 		try {
+			Floricultura floricultura = floriculturaDao.consultar(id);
+			dispositivo.setFloricultura(floricultura);
 			dispositivoDao.inserir(dispositivo);
 
 			return ResponseEntity.created(new URI("/dispositivo" + dispositivo.getId())).body(dispositivo);

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.lacosflores.dao.FloriculturaDao;
 import br.com.lacosflores.dao.UsuarioDao;
+import br.com.lacosflores.models.Floricultura;
 import br.com.lacosflores.models.Usuario;
 
 @RestController
@@ -25,6 +27,8 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioDao usuarioDao;
+	@Autowired
+	private FloriculturaDao floriculturaDao;
 
 	@RequestMapping(value = "/usuario/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<Usuario> salvar(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
@@ -41,8 +45,11 @@ public class UsuarioController {
 		}
 	}
 
-	@RequestMapping(value = "/usuario", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Usuario> inserir(@RequestBody Usuario usuario) {
+	@RequestMapping(value = "/{id}/usuario", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Usuario> inserir(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
+		Floricultura floricultura = floriculturaDao.consultar(id);
+		usuario.setFloricultura(floricultura);
+		
 		usuarioDao.inserir(usuario);
 
 		try {

@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.lacosflores.dao.ItemDao;
+import br.com.lacosflores.dao.PedidoDao;
 import br.com.lacosflores.models.Item;
-import br.com.lacosflores.models.Noticias;
+import br.com.lacosflores.models.Pedido;
 
 //falta alguns métodos(excluir etc)
 @RestController
@@ -25,14 +26,17 @@ public class ItemController {
 
 	@Autowired
 	private ItemDao itemDao;
+	@Autowired
+	private PedidoDao pedidoDao;
 
-	@RequestMapping(value = "/item", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Item> inserir(@RequestBody Item noticias) {
-		itemDao.inserir(noticias);
-
+	@RequestMapping(value = "/{id}/item", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Item> inserir(@PathVariable("id") Long id, @RequestBody Item item) {	
 		try {
-			URI location = new URI("/item" + noticias.getId());
-			return ResponseEntity.created(location).body(noticias);
+			Pedido pedido = pedidoDao.consultar(id);
+			item.setPedido(pedido);			
+			itemDao.inserir(item);
+			
+			return ResponseEntity.created(new URI("/item" + item.getId())).body(item);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

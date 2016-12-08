@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.lacosflores.dao.FloriculturaDao;
 import br.com.lacosflores.dao.PedidoDao;
-import br.com.lacosflores.dtoandroid.DTOAndroid;
-import br.com.lacosflores.models.Dispositivo;
 import br.com.lacosflores.models.Floricultura;
 import br.com.lacosflores.models.Item;
 import br.com.lacosflores.models.Pedido;
@@ -29,15 +28,20 @@ public class PedidoController{
 
 	@Autowired
 	private PedidoDao pedidoDao;
-	/*@Autowired
-	private ItemDao itemDao;*/
+	@Autowired
+	private FloriculturaDao floriculturaDao;
 
-	@RequestMapping(value = "/pedido", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Pedido> inserir(@RequestBody Pedido pedido) {
+	@RequestMapping(value = "{id}/pedido", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Pedido> inserir(@PathVariable("id") Long id,@RequestBody Pedido pedido) {
 		try {
-			for (Item itens : pedido.getItens()) {
-				itens.setPedido(pedido);
+			if (pedido.getItens() != null){	
+				for (Item itens : pedido.getItens()) {
+					itens.setPedido(pedido);
+				}
 			}
+			
+			Floricultura floricultura = floriculturaDao.consultar(id);
+			pedido.setFloricultura(floricultura);
 			pedidoDao.inserir(pedido);
 			return ResponseEntity.created(new URI("/pedido" + pedido.getId())).body(pedido);
 		} catch (Exception e) {
@@ -73,6 +77,4 @@ public class PedidoController{
 		Pedido pedido = pedidoDao.consultar(idPedido);
 		pedido.setStatus("Pedido Realizado");
 	}
-	
-	
 }
