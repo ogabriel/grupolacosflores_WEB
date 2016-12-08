@@ -1,6 +1,7 @@
 package br.com.lacosflores.controllers;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 //import org.hibernate.mapping.List;
@@ -79,18 +80,25 @@ public class DispositivoController {
 	}
 
 	@RequestMapping(value = "/dispositivo/celular/{imei}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public List<Dispositivo> consultar_imei(@PathVariable("imei") String imei) {
+	public Dispositivo consultar_imei(@PathVariable("imei") String imei) {
 		return dispositivoDao.consultar_imei(imei);
 	}
 	
 	@RequestMapping(value = "/dispositivo/filial/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public DTOAndroid consultar_filial(@PathVariable("id") long id) {
+	public List<DTOAndroid> consultar_filial(@PathVariable("id") long id) {
+		Floricultura floricultura = floriculturaDao.consultar(id);
+		java.util.List<Dispositivo> listaDisp = floricultura.getDispositivos();
 		
-		Dispositivo dispositivo = dispositivoDao.consultar(id);
-		Floricultura floricultura = dispositivo.getFloricultura();
+		//dispositivoDao.consultar_filial(id);
+		//System.out.println(dispositivoDao.consultar_filial(id));
+		//Floricultura floricultura = dispositivo.getFloricultura();
+		List<DTOAndroid> dtoAndrods = new ArrayList<DTOAndroid>();
+		for (Dispositivo disp : listaDisp) {
+			DTOAndroid dto = new DTOAndroid(disp.getId(), disp.getImei(), disp.getSenha(), floricultura.getId());
+			dtoAndrods.add(dto);
+		}
 		
-		return new DTOAndroid(dispositivo.getId(), dispositivo.getImei(), dispositivo.getSenha(), floricultura.getId());
-		
+		return dtoAndrods;
 	}
 	
 }

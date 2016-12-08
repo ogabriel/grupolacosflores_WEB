@@ -44,21 +44,32 @@ public class DispositivoDao {
 		return entityManager.find(Dispositivo.class, id);
 	}
 
-	public List<Dispositivo> consultar_imei(String imei) {
+	public Dispositivo consultar_imei(String imei) {
 		TypedQuery<Dispositivo> query = entityManager.createQuery(
 				"select dispositivo from Dispositivo dispositivo where dispositivo.imei = :imei",
 				Dispositivo.class);
 		query.setParameter("imei", imei);
 		
 		try {
-			return query.getResultList();
+			return query.getSingleResult();
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
-	public Dispositivo consultar_filial(Long id) {
-		return null;
+	public List<Dispositivo> consultar_filial(Long id) {
+		
+		TypedQuery<Dispositivo> query = entityManager.createQuery(
+				"select dispositivo from Dispositivo dispositivo where dispositivo.floricultura_id = :id",
+				Dispositivo.class);
+		query.setParameter("floricultura_id", id);
+		
+		try {
+			return query.getResultList();
+		} catch (Exception e) {
+			return null;
+		}
+		
 	}
 	
 	// TODO: falta as paradas de rastreamento
