@@ -79,5 +79,10 @@ public class NoticiasController {
 	public Noticias consultar(@PathVariable("id") long id) {
 		return noticiasDao.consultar(id);
 	}
+	
+	@RequestMapping(value = "/noticias/count", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public int consultar_count() {
+		return noticiasDao.listar().size();
+	}
 
 }

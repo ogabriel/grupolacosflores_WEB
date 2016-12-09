@@ -96,6 +96,11 @@ public class PedidoController {
 		return floricultura.getPedidos();
 		 
 	}	
+	
+	@RequestMapping(value = "/pedido/count", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public int consultar_count() {
+		return pedidoDao.listar().size();
+	}
 
 	public void definirEntregue(long idPedido) {
 		Pedido pedido = pedidoDao.consultar(idPedido);
