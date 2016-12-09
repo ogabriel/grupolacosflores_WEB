@@ -78,11 +78,12 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Usuario> logar(@RequestBody Usuario usuario) {
+	public ResponseEntity<Long> logar(@RequestBody Usuario usuario) {
 		Usuario us = usuarioDao.logar(usuario);
-
+		
 		if (us != null) {
-			return new ResponseEntity<>(HttpStatus.OK);
+			Floricultura floricultura = us.getFloricultura();
+			return ResponseEntity.ok(floricultura.getId());
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
