@@ -89,6 +89,13 @@ public class PedidoController {
 	 * 
 	 * }
 	 */
+	
+	@RequestMapping(value = "{id}/pedido", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public List<Pedido> listar_floricultura(@PathVariable("id") Long id) {
+		Floricultura floricultura = floriculturaDao.consultar(id);
+		return floricultura.getPedidos();
+		 
+	}	
 
 	public void definirEntregue(long idPedido) {
 		Pedido pedido = pedidoDao.consultar(idPedido);
