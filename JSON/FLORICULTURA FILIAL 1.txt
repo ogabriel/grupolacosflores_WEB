@@ -1,0 +1,33 @@
+{
+	"razaoSocial": "João ltda",
+	"nomeFantasia": "João Flores",
+	"cnpj": "91.579.829/0001-46",
+	"bairro": "Parque Peruche",
+	"cep": "02539-010",
+	"complemento": "casa 10",
+	"logradouro": "Rua Comendador Varam Keutenedjian",
+	"numero": 10,
+	"usuarios":	[
+			{
+				"email": "joaoadm@gmail.com",
+				"nome": "João Dono",
+				"senha": "root"
+			}
+		],
+	"dispositivos": [
+			{
+				"imei": "1",
+				"senha": "root"
+			}
+		],
+	"pedidos": [
+			{
+				"numero": "10",
+				"observacao": "tenha cuidado com o pedido",
+				"pedidoData": "10/10/2016",
+				"quantidade": "2",
+				"status": "processando",
+				"valorTotal": "20.0"
+			}
+		]
+}

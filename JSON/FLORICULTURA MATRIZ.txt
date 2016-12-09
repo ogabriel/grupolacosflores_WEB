@@ -1,0 +1,21 @@
+{
+	"razaoSocial": "Matriz ltda",
+	"nomeFantasia": "Grupo Lacos Flores",
+	"cnpj": "91.579.829/0001-46",
+	"bairro": "Parque Peruche",
+	"cep": "02539-010",
+	"complemento": "casa 10",
+	"logradouro": "Rua Comendador Varam Keutenedjian",
+	"numero": 10,
+	"usuarios":	[
+			{
+				"email": "eduardo@lacos.com",
+				"nome": "Eduardo",
+				"senha": "root"
+			},
+			{
+				"email": "ricardo@lacos.com",
+				"nome": "Ricardo Seinfet",
+				"senha": "root"
+			}
+}

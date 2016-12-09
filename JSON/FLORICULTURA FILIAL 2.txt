@@ -1,0 +1,33 @@
+{
+	"razaoSocial": "Maria ltda",
+	"nomeFantasia": "Maria Flores",
+	"cnpj": "57.266.428/0001-06",
+	"bairro": "Zerão",
+	"cep": "68903-430",
+	"complemento": "casa 10",
+	"logradouro": "Avenida Professor Caramuru",
+	"numero": 576,
+	"usuarios":	[
+			{
+				"email": "maria@gmail.com",
+				"nome": "Maria Dona",
+				"senha": "root"
+			}
+		],
+	"dispositivos": [
+			{
+				"imei": "862123036280979",
+				"senha": "root"
+			}
+		],
+	"pedidos": [
+			{
+				"numero": "9",
+				"observacao": "tenha muito cuidado com o pedido",
+				"pedidoData": "10/10/2016",
+				"quantidade": "4",
+				"status": "processando",
+				"valorTotal": "30.0"
+			}
+		]
+}
