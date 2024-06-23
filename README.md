@@ -21,13 +21,12 @@ Todo o projeto faz parte de uma iniciativa financiada pelo banco JPMorgan, hospe
 Quem é o Grupo Laços Flores?
 -----------
 
-É uma centralizadora de floriculturas, que estão espalhadas por todo o Brasil, e em todos os estados. Estas são responsáveis pela operação de entrega de produtos vendidos via site, pelo Grupo Laços Flores. 
+É uma centralizadora de floriculturas, que estão espalhadas por todo o Brasil, e em todos os estados. Estas são responsáveis pela operação de entrega de produtos vendidos via site, pelo Grupo Laços Flores.
 [Grupo Laços Flores](http://www.grupolacosflores.com.br/)
 
 Partes do projeto
 -----------
 
-* **Aplicação WEB:** [CLIQUE AQUI](https://github.com/gabrieloliver98/grupolacosflores_WEB)
+* **Back-end WEB:** [CLIQUE AQUI](https://github.com/gabrieloliver98/grupolacosflores_WEB)
 * **Front-end WEB** [CLIQUE AQUI](https://github.com/gabrieloliver98/grupolacosflores_front)
 * **Aplicativo Mobile(Android)**  [CLIQUE AQUI](https://github.com/gabrieloliver98/grupolacosflores_mobile)
-
