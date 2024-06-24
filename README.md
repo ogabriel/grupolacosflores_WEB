@@ -27,6 +27,5 @@ Quem é o Grupo Laços Flores?
 Partes do projeto
 -----------
 
-* **Back-end WEB:** [CLIQUE AQUI](https://github.com/gabrieloliver98/grupolacosflores_WEB)
-* **Front-end WEB** [CLIQUE AQUI](https://github.com/gabrieloliver98/grupolacosflores_front)
+* **Aplicação Front-end WEB** [CLIQUE AQUI](https://github.com/gabrieloliver98/grupolacosflores_front)
 * **Aplicativo Mobile(Android)**  [CLIQUE AQUI](https://github.com/gabrieloliver98/grupolacosflores_mobile)
